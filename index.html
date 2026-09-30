@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aishwarya H K | Portfolio</title>
+  <meta name="description" content="Personal academic portfolio of Aishwarya H K, 3rd Semester Computer Science Engineering student." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ==========================================================================
+       Design System & CSS Variables (Clean, Student-Professional Light Theme)
+       ========================================================================== */
+    :root {
+      --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      
+      /* Color Palette */
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8fafc;
+      --bg-card: #ffffff;
+      
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      
+      --accent-primary: #2563eb;
+      --accent-hover: #1d4ed8;
+      --accent-light: #eff6ff;
+      --accent-border: #bfdbfe;
+      
+      --border-light: #e2e8f0;
+      
+      /* Elevation */
+      --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --shadow-hover: 0 10px 15px -3px rgba(15, 23, 42, 0.06), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
+      
+      /* Layout */
+      --container-max: 1040px;
+      --nav-height: 70px;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --radius-full: 9999px;
+      --transition: all 0.2s ease-in-out;
+    }
+
+    /* ==========================================================================
+       Base & Reset
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--nav-height) + 16px);
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      font-family: var(--font-family);
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--text-secondary);
+      background-color: var(--bg-secondary);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 20px;
+      background: var(--accent-primary);
+      color: #ffffff;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      z-index: 1000;
+      text-decoration: none;
+      transition: top 0.2s ease;
+    }
+
+    .skip-link:focus {
+      top: 16px;
+    }
+
+    h1, h2, h3, h4 {
+      color: var(--text-primary);
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    p {
+      margin-bottom: 0.85rem;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    a {
+      color: var(--accent-primary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    button {
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent-primary);
+      outline-offset: 2px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    /* ==========================================================================
+       Header & Navigation
+       ========================================================================== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      height: var(--nav-height);
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-light);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      transition: var(--transition);
+    }
+
+    .site-header.scrolled {
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background-color: var(--accent-primary);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-name {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+
+    .logo-subtitle {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-list {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-link {
+      display: inline-block;
+      padding: 8px 12px;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+    }
+
+    .nav-link:hover {
+      color: var(--accent-primary);
+      background-color: var(--accent-light);
+    }
+
+    .nav-link.active {
+      color: var(--accent-primary);
+      background-color: var(--accent-light);
+      font-weight: 600;
+    }
+
+    .nav-link-btn {
+      background-color: var(--accent-primary);
+      color: #ffffff !important;
+      font-weight: 600;
+      padding: 8px 16px;
+    }
+
+    .nav-link-btn:hover {
+      background-color: var(--accent-hover) !important;
+      color: #ffffff !important;
+    }
+
+    .nav-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    .hamburger-line {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background-color: var(--text-primary);
+      margin: 4px 0;
+      transition: var(--transition);
+    }
+
+    /* ==========================================================================
+       Buttons
+       ========================================================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 0.925rem;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: var(--transition);
+    }
+
+    .btn-primary {
+      background-color: var(--accent-primary);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+      color: #ffffff;
+    }
+
+    .btn-secondary {
+      background-color: #ffffff;
+      color: var(--text-primary);
+      border-color: var(--border-light);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--accent-light);
+      border-color: var(--accent-border);
+      color: var(--accent-primary);
+    }
+
+    /* ==========================================================================
+       Section Commons
+       ========================================================================== */
+    .section {
+      padding: 70px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 40px auto;
+    }
+
+    .section-title {
+      font-size: 1.85rem;
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
+    }
+
+    .section-divider {
+      width: 40px;
+      height: 3px;
+      background-color: var(--accent-primary);
+      border-radius: var(--radius-full);
+      margin: 0 auto 12px auto;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 0.975rem;
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       1. Home / Introduction Section
+       ========================================================================== */
+    .hero-section {
+      padding: 70px 0;
+      background-color: var(--bg-primary);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .hero-container {
+      max-width: 820px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background-color: var(--accent-light);
+      color: var(--accent-primary);
+      border: 1px solid var(--accent-border);
+      padding: 5px 12px;
+      border-radius: var(--radius-full);
+      font-size: 0.825rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-size: 2.75rem;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .text-accent {
+      color: var(--accent-primary);
+    }
+
+    .hero-lead {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    /* ==========================================================================
+       2. About Section
+       ========================================================================== */
+    .about-section {
+      background-color: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .about-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 36px 32px;
+      box-shadow: var(--shadow-sm);
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .about-text {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+    }
+
+    .student-info-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      gap: 16px;
+    }
+
+    .info-item {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .info-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .info-value {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .info-separator {
+      width: 1px;
+      height: 28px;
+      background-color: var(--border-light);
+    }
+
+    /* ==========================================================================
+       3. Projects / Activities Section
+       ========================================================================== */
+    .activities-section {
+      background-color: var(--bg-primary);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .activities-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .activity-card {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .activity-card:hover {
+      border-color: var(--accent-border);
+      box-shadow: var(--shadow-hover);
+      background-color: #ffffff;
+    }
+
+    .activity-top {
+      margin-bottom: 12px;
+    }
+
+    .activity-number {
+      display: inline-block;
+      background-color: var(--accent-light);
+      color: var(--accent-primary);
+      font-size: 0.775rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+    }
+
+    .activity-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.35;
+      margin-bottom: 12px;
+    }
+
+    .activity-description {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    .activity-link-wrap {
+      border-top: 1px solid var(--border-light);
+      padding-top: 14px;
+    }
+
+    .repo-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--accent-primary);
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      background-color: var(--accent-light);
+      border: 1px solid var(--accent-border);
+      transition: var(--transition);
+    }
+
+    .repo-link:hover {
+      background-color: #dbeafe;
+      color: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .external-icon {
+      font-size: 0.9rem;
+      line-height: 1;
+    }
+
+    /* ==========================================================================
+       4. Skills Section
+       ========================================================================== */
+    .skills-section {
+      background-color: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .skill-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background-color: #ffffff;
+      border: 1px solid var(--border-light);
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .skill-pill:hover {
+      border-color: var(--accent-border);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .skill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--accent-primary);
+    }
+
+    .skill-text {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    /* ==========================================================================
+       5. Learning Goal Section
+       ========================================================================== */
+    .learning-goal-section {
+      background-color: var(--bg-primary);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .goal-box {
+      background-color: var(--bg-secondary);
+      border-left: 4px solid var(--accent-primary);
+      border-top: 1px solid var(--border-light);
+      border-right: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: 32px 36px;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .goal-text {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    /* ==========================================================================
+       6. Contact Section (Simple, Professional, No Form)
+       ========================================================================== */
+    .contact-section {
+      background-color: var(--bg-secondary);
+    }
+
+    .contact-card {
+      background-color: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 36px 32px;
+      box-shadow: var(--shadow-sm);
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contact-info-list {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .contact-entry {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .entry-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .entry-value {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .contact-divider {
+      width: 1px;
+      height: 28px;
+      background-color: var(--border-light);
+    }
+
+    .contact-github-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .contact-github-text {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      max-width: 520px;
+    }
+
+    .github-profile-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 24px;
+      font-size: 0.95rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .github-profile-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* ==========================================================================
+       Footer
+       ========================================================================== */
+    .site-footer {
+      background-color: #ffffff;
+      border-top: 1px solid var(--border-light);
+      padding: 24px 0;
+    }
+
+    .footer-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .footer-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .footer-name {
+      font-weight: 700;
+      color: var(--text-primary);
+      font-size: 0.925rem;
+    }
+
+    .footer-meta {
+      font-size: 0.775rem;
+      color: var(--text-muted);
+    }
+
+    .footer-copy {
+      font-size: 0.825rem;
+      color: var(--text-muted);
+    }
+
+    .back-to-top {
+      font-size: 0.825rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-light);
+      background-color: var(--bg-secondary);
+      transition: var(--transition);
+    }
+
+    .back-to-top:hover {
+      color: var(--accent-primary);
+      border-color: var(--accent-border);
+      background-color: var(--accent-light);
+    }
+
+    /* ==========================================================================
+       Responsive Breakpoints
+       ========================================================================== */
+    @media (max-width: 768px) {
+      .site-header {
+        height: auto;
+        padding: 12px 0;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+
+      .site-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #ffffff;
+        border-bottom: 1px solid var(--border-light);
+        box-shadow: var(--shadow-md);
+        padding: 16px 24px;
+      }
+
+      .site-nav.open {
+        display: block;
+      }
+
+      .nav-list {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+      }
+
+      .nav-link {
+        display: block;
+        padding: 10px 12px;
+      }
+
+      .nav-link-btn {
+        text-align: center;
+      }
+
+      .hero-title {
+        font-size: 2.15rem;
+      }
+
+      .student-info-bar,
+      .contact-info-list {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .info-separator,
+      .contact-divider {
+        width: 100%;
+        height: 1px;
+      }
+
+      .activities-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    /* ==========================================================================
+       Reduced Motion
+       ========================================================================== */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Accessible Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header / Navigation -->
+  <header class="site-header" id="header">
+    <div class="container nav-container">
+      <a href="#home" class="logo" aria-label="Aishwarya H K Home">
+        <span class="logo-mark">A</span>
+        <div class="logo-text">
+          <span class="logo-name">Aishwarya H K</span>
+          <span class="logo-subtitle">CSE • 3rd Semester</span>
+        </div>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Toggle navigation menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+
+      <nav class="site-nav" id="navMenu" aria-label="Main Navigation">
+        <ul class="nav-list">
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#activities" class="nav-link">Activities</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#learning-goal" class="nav-link">Learning Goal</a></li>
+          <li><a href="#contact" class="nav-link nav-link-btn">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- 1. Home / Introduction Section -->
+    <section class="hero-section" id="home">
+      <div class="container hero-container">
+        <div class="hero-badge">
+          3rd Semester • Computer Science Engineering
+        </div>
+        <h1 class="hero-title">
+          Hi, I'm <span class="text-accent">Aishwarya H K</span>
+        </h1>
+        <p class="hero-lead">
+          I am a 3rd semester Computer Science Engineering student interested in software development and emerging technologies. I enjoy learning by building practical projects and improving my technical skills through hands-on activities.
+        </p>
+        <div class="hero-actions">
+          <a href="#activities" class="btn btn-primary">
+            <span>View Activities</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </a>
+          <a href="#contact" class="btn btn-secondary">
+            <span>Contact Information</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. About Section -->
+    <section class="section about-section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">About Me</h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="about-card">
+          <p class="about-text">
+            I am a 3rd semester Computer Science Engineering student interested in software development and emerging technologies. I enjoy learning by building practical projects and improving my technical skills through hands-on activities. My interests include programming, Git and GitHub, IoT, data science, and software development.
+          </p>
+
+          <div class="student-info-bar">
+            <div class="info-item">
+              <span class="info-label">Name</span>
+              <span class="info-value">Aishwarya H K</span>
+            </div>
+            <div class="info-separator" aria-hidden="true"></div>
+            <div class="info-item">
+              <span class="info-label">Semester</span>
+              <span class="info-value">3rd Semester</span>
+            </div>
+            <div class="info-separator" aria-hidden="true"></div>
+            <div class="info-item">
+              <span class="info-label">Branch</span>
+              <span class="info-value">Computer Science Engineering</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Projects / Activities Section -->
+    <section class="section activities-section" id="activities">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Projects &amp; Activities</h2>
+          <div class="section-divider"></div>
+          <p class="section-subtitle">
+            Hands-on technical activities completed as part of my coursework and practical learning.
+          </p>
+        </div>
+
+        <div class="activities-grid">
+          <!-- Activity 1 -->
+          <article class="activity-card">
+            <div class="activity-top">
+              <span class="activity-number">Activity 1</span>
+            </div>
+            <h3 class="activity-title">VS Code and Programming Environment Setup</h3>
+            <p class="activity-description">
+              I set up and verified my programming environment using Visual Studio Code. I learned how to work with the development environment and run a basic programming program successfully.
+            </p>
+            <div class="activity-link-wrap">
+              <a href="https://github.com/aishwaryahkbankar-art/Portfolio-Building" class="repo-link" target="_blank" rel="noopener noreferrer">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                <span>View GitHub Repository</span>
+                <span class="external-icon" aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Activity 2 -->
+          <article class="activity-card">
+            <div class="activity-top">
+              <span class="activity-number">Activity 2</span>
+            </div>
+            <h3 class="activity-title">Git and GitHub Setup</h3>
+            <p class="activity-description">
+              I learned the basics of Git and GitHub. I created a repository for my programming work and learned how to create repositories, add files, commit changes, and manage code using GitHub.
+            </p>
+            <div class="activity-link-wrap">
+              <a href="https://github.com/aishwaryahkbankar-art/Hello-world-c" class="repo-link" target="_blank" rel="noopener noreferrer">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                <span>View GitHub Repository</span>
+                <span class="external-icon" aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Activity 3 -->
+          <article class="activity-card">
+            <div class="activity-top">
+              <span class="activity-number">Activity 3</span>
+            </div>
+            <h3 class="activity-title">GitLens and Live Share</h3>
+            <p class="activity-description">
+              I explored GitLens and Live Share in Visual Studio Code. GitLens helped me understand Git history and code-related information, while Live Share introduced collaborative programming features.
+            </p>
+            <div class="activity-link-wrap">
+              <a href="https://github.com/aishwaryahkbankar-art/Hello-world-c" class="repo-link" target="_blank" rel="noopener noreferrer">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                <span>View GitHub Repository</span>
+                <span class="external-icon" aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Activity 4 -->
+          <article class="activity-card">
+            <div class="activity-top">
+              <span class="activity-number">Activity 4</span>
+            </div>
+            <h3 class="activity-title">LeetCode Practice Repository</h3>
+            <p class="activity-description">
+              I practiced programming problem-solving and maintained my solutions in a GitHub repository. This helped me improve my programming logic and document my coding progress.
+            </p>
+            <div class="activity-link-wrap">
+              <a href="https://github.com/aishwaryahkbankar-art/leetcode-solutions" class="repo-link" target="_blank" rel="noopener noreferrer">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                <span>View GitHub Repository</span>
+                <span class="external-icon" aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Skills Section -->
+    <section class="section skills-section" id="skills">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Technical Skills</h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-pill">
+            <span class="skill-dot" aria-hidden="true"></span>
+            <span class="skill-text">C</span>
+          </div>
+          <div class="skill-pill">
+            <span class="skill-dot" aria-hidden="true"></span>
+            <span class="skill-text">Java</span>
+          </div>
+          <div class="skill-pill">
+            <span class="skill-dot" aria-hidden="true"></span>
+            <span class="skill-text">Python</span>
+          </div>
+          <div class="skill-pill">
+            <span class="skill-dot" aria-hidden="true"></span>
+            <span class="skill-text">Git and GitHub</span>
+          </div>
+          <div class="skill-pill">
+            <span class="skill-dot" aria-hidden="true"></span>
+            <span class="skill-text">Visual Studio Code</span>
+          </div>
+          <div class="skill-pill">
+            <span class="skill-dot" aria-hidden="true"></span>
+            <span class="skill-text">Basic Web Development</span>
+          </div>
+          <div class="skill-pill">
+            <span class="skill-dot" aria-hidden="true"></span>
+            <span class="skill-text">Problem Solving</span>
+          </div>
+          <div class="skill-pill">
+            <span class="skill-dot" aria-hidden="true"></span>
+            <span class="skill-text">Basic Data Science</span>
+          </div>
+          <div class="skill-pill">
+            <span class="skill-dot" aria-hidden="true"></span>
+            <span class="skill-text">IoT and Embedded Systems</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Learning Goal Section -->
+    <section class="section learning-goal-section" id="learning-goal">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Learning Goal</h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="goal-box">
+          <blockquote class="goal-text">
+            “My goal is to strengthen my programming and problem-solving fundamentals and continue learning data structures, algorithms, databases, and software development tools.”
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Contact Section (Simple, Professional, No Form) -->
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Contact</h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-info-list">
+            <div class="contact-entry">
+              <span class="entry-label">Name</span>
+              <span class="entry-value">Aishwarya H K</span>
+            </div>
+            <div class="contact-divider" aria-hidden="true"></div>
+            <div class="contact-entry">
+              <span class="entry-label">Semester</span>
+              <span class="entry-value">3rd Semester</span>
+            </div>
+            <div class="contact-divider" aria-hidden="true"></div>
+            <div class="contact-entry">
+              <span class="entry-label">Branch</span>
+              <span class="entry-value">Computer Science Engineering</span>
+            </div>
+          </div>
+
+          <div class="contact-github-box">
+            <p class="contact-github-text">
+              View my academic activities, programming exercises, and problem-solving repositories on GitHub:
+            </p>
+            <a href="https://github.com/aishwaryahkbankar-art" class="btn btn-primary github-profile-btn" target="_blank" rel="noopener noreferrer">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              <span>GitHub: @aishwaryahkbankar-art</span>
+              <span class="external-icon" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-info">
+        <span class="footer-name">Aishwarya H K</span>
+        <span class="footer-meta">3rd Semester • Computer Science Engineering</span>
+      </div>
+      <p class="footer-copy">
+        &copy; <span id="currentYear"></span> Aishwarya H K. All rights reserved.
+      </p>
+      <a href="#home" class="back-to-top" aria-label="Scroll back to top">
+        <span>Back to Top ↑</span>
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    /**
+     * Portfolio Interactive Scripts
+     * Aishwarya H K - Portfolio Website
+     */
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Dynamic Year in Footer
+      const yearElement = document.getElementById('currentYear');
+      if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+      }
+
+      // 2. Mobile Navigation Toggle
+      const navToggle = document.getElementById('navToggle');
+      const navMenu = document.getElementById('navMenu');
+      const navLinks = document.querySelectorAll('.nav-link');
+
+      if (navToggle && navMenu) {
+        navToggle.addEventListener('click', () => {
+          const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+          navToggle.setAttribute('aria-expanded', !isExpanded);
+          navMenu.classList.toggle('open');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+          if (!navToggle.contains(e.target) && !navMenu.contains(e.target) && navMenu.classList.contains('open')) {
+            navMenu.classList.remove('open');
+            navToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        // Close mobile menu when a nav link is clicked
+        navLinks.forEach((link) => {
+          link.addEventListener('click', () => {
+            if (navMenu.classList.contains('open')) {
+              navMenu.classList.remove('open');
+              navToggle.setAttribute('aria-expanded', 'false');
+            }
+          });
+        });
+      }
+
+      // 3. Header Scroll Effect
+      const header = document.getElementById('header');
+      if (header) {
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 20) {
+            header.classList.add('scrolled');
+          } else {
+            header.classList.remove('scrolled');
+          }
+        }, { passive: true });
+      }
+
+      // 4. ScrollSpy / Active Link on Scroll
+      const sections = document.querySelectorAll('section[id]');
+      
+      function updateActiveNav() {
+        const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+        
+        sections.forEach((section) => {
+          const sectionHeight = section.offsetHeight;
+          const sectionTop = section.offsetTop - 100;
+          const sectionId = section.getAttribute('id');
+          
+          if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+            navLinks.forEach((link) => {
+              if (link.getAttribute('href') === `#${sectionId}`) {
+                link.classList.add('active');
+              } else {
+                link.classList.remove('active');
+              }
+            });
+          }
+        });
+      }
+
+      window.addEventListener('scroll', updateActiveNav, { passive: true });
+    });
+  </script>
+</body>
+</html>
